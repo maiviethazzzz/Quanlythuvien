@@ -12,7 +12,7 @@ namespace Quanlythuvien.DAL
             string Sql = @"SELECT u.UserID , u.Username , u.PasswordHash , u.Fullname , u.RoleID , r.Rolename FROM Users u INNER JOIN Roles r ON u.RoleID = r.RoleID WHERE u.Username = @Username";
             using (SqlConnection connection = DBConnection.Getconnection())
             {
-                using (SqlCommand command = new SqlCommand(Sql, connection)) 
+                using (SqlCommand command = new SqlCommand(Sql, connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
                     try
@@ -20,7 +20,7 @@ namespace Quanlythuvien.DAL
                         connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            if(reader.Read())
+                            if (reader.Read())
                             {
                                 user = new User
                                 {
@@ -39,8 +39,9 @@ namespace Quanlythuvien.DAL
                         throw new Exception("Lỗi truy vấn người dùng:\n" + ex.Message);
                     }
                 }
-             
-            return user;
+
+                return user;
+            }
         }
     }
 }
